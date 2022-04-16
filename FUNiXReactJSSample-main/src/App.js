@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
-import Dsnhanvien from './components/Dsnhanvien';
-import Thongtinnv from './components/Thongtinnv';
+import StaffList from './components/StaffListComponent';
+import {STAFFS} from './shared/staffs'
 import './App.css';
 class App extends Component {
 
