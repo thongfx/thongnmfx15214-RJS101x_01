@@ -17,7 +17,7 @@ class StaffList extends Component {
     renderStaff(staff) {
     if (staff != null) {
       return (
-        <div className="col-12">
+        <div className="col-6">
           <Card>
             <CardImg width="100%" src={staff.image} alt={staff.name} />
             <CardBody>
@@ -38,11 +38,11 @@ class StaffList extends Component {
     } else {
       return <div></div>;
     }
-  }
-  render() {
+    }
+    render() {
     const staffList = this.props.staffs.map((staff) => {
       return (
-          <div className={"col-12 col-md-6 col-lg-4 mt-3 "} onClick={() => { this.staffselect(staff) }}>
+          <div className={"col-12 col-md-6 col-lg-4 mt-3"} onClick={() => { this.staffselect(staff) }}>
           <Card key={staff.id}>
             <CardBody>
               <CardTitle>{staff.name}</CardTitle>
@@ -53,6 +53,33 @@ class StaffList extends Component {
     });
     return (
       <div className="container">
+            <div>
+                <button
+                className="btn btn-primary mr-3 mt-3"
+                >
+                    1 cột
+                </button>
+                <button
+                className="btn btn-primary mr-3 mt-3"                
+                >
+                    2 cột 
+                </button>
+                <button
+                className="btn btn-primary mr-3 mt-3"                
+                >
+                    3 cột
+                </button>
+                <button
+                className="btn btn-primary mr-3 mt-3"                
+                >
+                    4 cột
+                </button>
+                <button
+                className="btn btn-primary mr-3 mt-3"                
+                >
+                    6 cột
+                </button>
+            </div>
             <div className="row">{staffList}</div>
             <div className="row mt-5">
                 {this.renderStaff(this.state.selectstaff)}
