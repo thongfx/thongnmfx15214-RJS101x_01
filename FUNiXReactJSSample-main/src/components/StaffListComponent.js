@@ -7,11 +7,17 @@ class StaffList extends Component {
         super(props);
         this.state = {
             selectstaff: null,
+            columnDefaut: "col-12 col-md-6 col-lg-4 mt-3",
         };
     }
     staffselect(staff) {
         this.setState({
             selectstaff: staff
+        });
+    }
+    changecolumn(col) {
+        this.setState({
+            columnDefaut: col
         });
     }
     renderStaff(staff) {
@@ -42,7 +48,7 @@ class StaffList extends Component {
     render() {
     const staffList = this.props.staffs.map((staff) => {
       return (
-          <div className={"col-12 col-md-6 col-lg-4 mt-3"} onClick={() => { this.staffselect(staff) }}>
+          <div className={this.state.columnDefaut} onClick={() => { this.staffselect(staff) }}>
           <Card key={staff.id}>
             <CardBody>
               <CardTitle>{staff.name}</CardTitle>
@@ -55,7 +61,8 @@ class StaffList extends Component {
       <div className="container">
             <div>
                 <button
-                className="btn btn-primary mr-3 mt-3"
+                    className="btn btn-primary mr-3 mt-3"
+                    onClick={() => this.changecolumn("col-md-12 mt-2")}
                 >
                     1 cột
                 </button>
