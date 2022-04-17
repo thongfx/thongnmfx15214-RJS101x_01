@@ -1,34 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Card, CardImg, CardTitle, CardBody, CardText } from "reactstrap";
+import dateFormat from "dateformat";
 
 class StaffList extends Component {
-    
-    render() {
-        const menu = this.state.dishes.map((dish) => {
-            return (
-              <div key={dish.id} className="col-12 mt-5">
-                <Media tag="li">
-                  <Media left middle>
-                      <Media object src={dish.image} alt={dish.name} />
-                  </Media>
-                  <Media body className="ml-5">
-                    <Media heading>{dish.name}</Media>
-                    <p>{dish.description}</p>
-                  </Media>
-                </Media>
-              </div>
-            );
-        });
-
-        return (
-          <div className="container">
-            <div className="row">
-              <Media list>
-                  {menu}
-              </Media>
-            </div>
-          </div>
-        );
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
     }
+    
+  render() {
+    const staffList = this.props.staffs.map((staff) => {
+      return (
+        <div className={"col-12 col-md-6 col-lg-4 mt-3 "}>
+          <Card key={staff.id}>
+            <CardBody>
+              <CardTitle>{staff.name}</CardTitle>
+            </CardBody>
+          </Card>
+        </div>
+      );
+    });
+    return (
+      <div className="container">
+            <div className="row">{staffList}</div>
+      </div>
+    );
+  }
 }
 
-export default Menu;
+export default StaffList;
