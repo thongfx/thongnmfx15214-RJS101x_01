@@ -67,22 +67,26 @@ class StaffList extends Component {
                     1 cột
                 </button>
                 <button
-                className="btn btn-primary mr-3 mt-3"                
+                    className="btn btn-primary mr-3 mt-3"
+                    onClick={() => this.changecolumn("col-md-6 mt-2")}
                 >
                     2 cột 
                 </button>
                 <button
-                className="btn btn-primary mr-3 mt-3"                
+                    className="btn btn-primary mr-3 mt-3"                
+                    onClick={() => this.changecolumn("col-md-4 mt-2")}
                 >
                     3 cột
                 </button>
                 <button
-                className="btn btn-primary mr-3 mt-3"                
+                    className="btn btn-primary mr-3 mt-3"
+                    onClick={() => this.changecolumn("col-md-3 mt-2")}                    
                 >
                     4 cột
                 </button>
                 <button
-                className="btn btn-primary mr-3 mt-3"                
+                    className="btn btn-primary mr-3 mt-3"                
+                    onClick={() => this.changecolumn("col-md-2 mt-2")}
                 >
                     6 cột
                 </button>
