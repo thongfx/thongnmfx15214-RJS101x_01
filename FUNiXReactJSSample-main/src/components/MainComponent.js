@@ -20,7 +20,7 @@ class Main extends Component {
   render() {
      const HomePage = () => {
        return (
-         <Stafflist/>
+         <Stafflist staffs={this.state.staffs}/>
       );
     }
     const StaffWithId = ({match}) => {
@@ -34,7 +34,7 @@ class Main extends Component {
         <Header />
         <Switch>
           <Route path='/home' component={HomePage} />
-          <Route exact path='/menu' component={() => <Stafflist staffs={this.state.staffs} />} />
+          <Route exact path='/Nhanvien' component={() => <Stafflist staffs={this.state.staffs} />} />
           <Redirect to="/home" />
         </Switch>
         <Footer />

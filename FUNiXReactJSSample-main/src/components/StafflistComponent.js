@@ -1,21 +1,25 @@
 import React from 'react';
-import { Card, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Card, CardBody, CardImg, CardTitle, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from 'react-router-dom';
 
-function RenderStafflist({staffs}) {
+function RenderStafflist({staff}) {
     return (
-    <Card key={staffs.id}>
-        <CardBody>
-            <CardTitle >{staffs.name}</CardTitle>
-        </CardBody>
-    </Card>
+        <Link to={`/menu/${staff.id}`}>
+            <CardImg width="100%" src={staff.image} alt={staff.name} />
+            <Card>
+                <CardBody>
+                    <CardTitle >{staff.name}</CardTitle>
+                </CardBody>
+            </Card>
+        </Link>
     )
 }
+
 const Stafflist = (props) => {
     const stafflist = props.staffs.map((staff) => {
       return (
-        <div>
-            <RenderStafflist staffs={staffs}/>
+        <div className="col-6 col-md-4 col-lg-2" key={staff.id}>
+            <RenderStafflist staff={staff}/>
         </div>
       );
     });
