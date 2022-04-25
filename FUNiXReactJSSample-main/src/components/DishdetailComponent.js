@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 
     }
 
-    function RenderComments({comments, postComment, dishId}) {
+    function RenderComments({comments}) {
         if (comments != null)
             return(
                 <div>
