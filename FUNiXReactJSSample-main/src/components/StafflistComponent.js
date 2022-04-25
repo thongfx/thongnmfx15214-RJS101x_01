@@ -29,7 +29,7 @@ const Stafflist = (props) => {
             <div className="row">
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>Menu</BreadcrumbItem>
+                    <BreadcrumbItem active>Danh Sách Nhân Viên</BreadcrumbItem>
                 </Breadcrumb>
                 <div className="col-12">
                     <h3>Nhân Viên</h3>
