@@ -18,9 +18,10 @@ class Main extends Component {
   }
 
   render() {
-    const StaffWithId = ({ match }) => {
+    const StaffWithId = ({match}) => {
       return(
-        <Staffdetail staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.staffID,10))[0]}   
+        <Staffdetail staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId))[0]}
+        department = {this.state.departments.filter((department) => department.dishId === parseInt(match.params.dishId,10))}  
         />
       );
     };
@@ -30,7 +31,7 @@ class Main extends Component {
         <Header />
         <Switch>
           <Route exact path="/Nhanvien" component={() => <Stafflist staffs={this.state.staffs} />} />
-          <Route path="/Nhanvien/:staffID" component={StaffWithId} />
+          <Route path="/Nhanvien/:staffId" component={StaffWithId} />
           <Route path="/Phongban" component={() => <Department dept={this.state.departments} />} />
           <Redirect to="/Nhanvien"/>
         </Switch>

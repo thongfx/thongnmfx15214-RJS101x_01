@@ -7,10 +7,10 @@ function RenderStaffdetail({ staff }) {
         return (
             <div className="col-12">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-12 col-md-4 col-lg-3 ">
                         <CardImg width="100%" src={staff.image} alt={staff.name} />
                     </div>
-                    <div className="col-9">
+                    <div className="col-12 col-md-8 col-lg-9 ">
                         <CardTitle>Họ và tên: {staff.name}</CardTitle>
                         <CardText>
                             Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}
@@ -28,7 +28,6 @@ function RenderStaffdetail({ staff }) {
 }
 
 const Staffdetail = (props) => {
-    console.log("prop", props)
     if (props.staff != null ) {
         return (
             <div className="container">
@@ -42,16 +41,14 @@ const Staffdetail = (props) => {
                         <hr />
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <RenderStaffdetail staff={props.staff} />
-                    </div>
+                <div>                
+                    <RenderStaffdetail staff={props.staff} />
                 </div>
             </div>
         );
     } else {
         return (
-            <div>helooo</div>
+            <div></div>
         ); 
     }
 }
