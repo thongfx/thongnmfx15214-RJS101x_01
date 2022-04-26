@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function RenderStaffdetail({ staff }) {
         return (
-            <div className="col-12">
+            <div className="col-12 mb-3">
                 <div className="row">
                     <div className="col-12 col-md-4 col-lg-3 ">
                         <CardImg width="100%" src={staff.image} alt={staff.name} />
