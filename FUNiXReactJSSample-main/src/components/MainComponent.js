@@ -20,23 +20,24 @@ class Main extends Component {
   render() {
     const StaffWithId = ({ match }) => {
       return(
-        <Staffdetail staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId, 10))[0]}   
+        <Staffdetail staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.staffID,10))[0]}   
         />
       );
     };
-  return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path="/Nhanvien" component={() => <Stafflist staffs={this.state.staffs} />} />
-        <Route path="/Nhanvien/:staffID" component={StaffWithId} />
-        <Route path="/Phongban" component={() => <Department dept={this.state.departments} />} />
-        <Redirect to="/Nhanvien"/>
-      </Switch>
-      <Footer />
-    </div>
-  );
-}
+    
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/Nhanvien" component={() => <Stafflist staffs={this.state.staffs} />} />
+          <Route path="/Nhanvien/:staffID" component={StaffWithId} />
+          <Route path="/Phongban" component={() => <Department dept={this.state.departments} />} />
+          <Redirect to="/Nhanvien"/>
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default Main;

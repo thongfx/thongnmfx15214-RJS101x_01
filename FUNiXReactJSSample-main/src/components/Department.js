@@ -1,26 +1,20 @@
-import React, { Component } from "react";
+import React from 'react';
 import { Card, CardTitle, CardBody, CardText } from "reactstrap";
 
-// Presentational Component
-class RenderDept extends Component {
-  render() {
+function RenderDept (props) {
     return (
-      //Render Department dung props cua Department Component
       <Card>
-        <CardTitle className="m-2">{this.props.dept.name}</CardTitle>
+        <CardTitle className="m-2">{props.dept.name}</CardTitle>
         <CardBody>
           <CardText>
-            Số lượng nhân viên: {this.props.dept.numberOfStaff}
+            Số lượng nhân viên: {props.dept.numberOfStaff}
           </CardText>
         </CardBody>
       </Card>
     );
   }
-}
 
-//Container components
-function Department(props) {
-  //Dung map() de fetch toan bo data tu props cua MainComponent
+const Department = (props) => {
   const departments = props.dept.map((department) => {
     return (
       <div className="col-12 col-md-6 col-lg-4 mt-2 mb-2" key={department.id}>
