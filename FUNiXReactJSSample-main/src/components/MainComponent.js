@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './HeaderComponent';
-import Footer from './FooterComponent';
-import Stafflist from './StafflistComponent';
-import Staffdetail from './StaffdetailComponent';
+import Header from './Header';
+import Footer from './Footer';
+import Stafflist from './Stafflist';
+import Staffdetail from './Staffdetail';
 import Department from './Department';
 import { STAFFS, DEPARTMENTS } from '../shared/staffs';
 import { Switch, Route, Redirect } from 'react-router-dom';
