@@ -208,5 +208,4 @@ export const STAFFS =
             overTime: 10,
             image: '/assets/images/alberto.png',
         },
-
     ]

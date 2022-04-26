@@ -3,8 +3,8 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Stafflist from './StafflistComponent';
 import Staffdetail from './StaffdetailComponent';
-import Salary from './SalaryComponent';
-import { STAFFS } from '../shared/staffs';
+import Department from './Department';
+import { STAFFS, DEPARTMENTS } from '../shared/staffs';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 class Main extends Component {
@@ -13,34 +13,30 @@ class Main extends Component {
     super(props);
     this.state = {
       staffs: STAFFS,
+      departments: DEPARTMENTS
     };
   }
-
 
   render() {
-     const HomePage = () => {
-       return (
-         <Stafflist staffs={this.state.staffs}/>
-      );
-    }
-    const StaffWithId = ({match}) => {
+    const StaffWithId = ({ match }) => {
       return(
-          <Staffdetail dish= {this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
-            comments = {this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+        <Staffdetail staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId, 10))[0]}   
+        />
       );
     };
-    return (
-      <div>
-        <Header />
-        <Switch>
-          <Route path='/home' component={HomePage} />
-          <Route exact path='/Nhanvien' component={() => <Stafflist staffs={this.state.staffs} />} />
-          <Redirect to="/home" />
-        </Switch>
-        <Footer />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/Nhanvien" component={() => <Stafflist staffs={this.state.staffs} />} />
+        <Route path="/Nhanvien/:staffID" component={StaffWithId} />
+        <Route path="/Phongban" component={() => <Department dept={this.state.departments} />} />
+        <Redirect to="/Nhanvien"/>
+      </Switch>
+      <Footer />
+    </div>
+  );
+}
 }
 
 export default Main;
