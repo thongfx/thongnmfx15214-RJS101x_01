@@ -16,7 +16,6 @@ function RenderStafflist({staff}) {
 
 const Stafflist = (props) => {
     const [inputId, setInputId] = useState("");
-
     let inputHandler = (e) => {
         //input dữ liệu 
         setInputId(e.target.value);
