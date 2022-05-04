@@ -22,7 +22,7 @@ class Main extends Component {
     const StaffWithId = ({match}) => {
       return(
         <Staffdetail staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId))[0]}
-        department = {this.state.departments.filter((department) => department.dishId === parseInt(match.params.dishId,10))}  
+        department = {this.state.departments.filter((department) => department.staddId === parseInt(match.params.staffId,10))}  
         />
       );
     };

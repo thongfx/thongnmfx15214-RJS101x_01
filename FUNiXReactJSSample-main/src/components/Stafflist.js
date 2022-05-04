@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Card, CardImg, CardTitle } from "reactstrap";
 import { Link } from 'react-router-dom';
-import { number } from 'prop-types';
 
 function RenderStafflist({staff}) {
     return (
