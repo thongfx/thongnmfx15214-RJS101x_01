@@ -16,6 +16,16 @@ class Main extends Component {
       staffs: STAFFS,
       departments: DEPARTMENTS
     };
+    this.addStaff = this.addStaff.bind(this);
+  }
+
+  addStaff = (staff) => {
+    const id = Math.floor(Math.random() * 10000 + 1);
+    const newStaff = { id, ...staff };
+    this.setState({
+      staffs: [...this.state.staffs, newStaff]
+    });
+    alert('Current State is: ' + JSON.stringify(newStaff))
   }
 
   render() {
@@ -31,7 +41,7 @@ class Main extends Component {
       <div>
         <Header />
         <Switch>
-          <Route exact path="/Nhanvien" component={() => <Stafflist staffs={this.state.staffs} />} />
+          <Route exact path="/Nhanvien" component={() => <Stafflist onAdd={this.addStaff} staffs={this.state.staffs} />} />
           <Route path="/Nhanvien/:staffId" component={StaffWithId} />
           <Route path="/Phongban" component={() => <Department dept={this.state.departments} />} />
           <Route path="/Bangluong" component={() => <Salary staffs={this.state.staffs} />} />
