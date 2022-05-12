@@ -4,6 +4,8 @@ import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
 
 function RenderStaffdetail({ staff }) {
+    console.log("staff.department", staff.department)
+    console.log("staff", staff)
         return (
             <div className="col-12 mb-3">
                 <div className="row">
@@ -18,7 +20,7 @@ function RenderStaffdetail({ staff }) {
                         <CardText>
                             Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}
                         </CardText>
-                        <CardText>Phòng ban: {staff.department.name}</CardText>
+                        <CardText>Phòng ban: {staff.department&&staff.department.name}</CardText>
                         <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
                         <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
                     </div>

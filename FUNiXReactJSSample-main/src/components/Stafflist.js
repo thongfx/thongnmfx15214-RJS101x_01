@@ -12,7 +12,7 @@ class Stafflist extends Component {
             name: "",
             doB: "",
             startDate: "",
-            department: "sale",
+            department: "",
             salaryScale: 1,
             annualLeave: 0,
             overTime: 0,
@@ -190,7 +190,7 @@ class Stafflist extends Component {
                             <FormGroup row>
                                 <Label htmlFor="name" md={4}>Tên</Label>
                                 <Col md={8}>
-                                    <Input type="text" id="name" name="name"
+                                    <Input type="text" id="name" name="name" 
                                         placeholder="Tên Nhân Viên"
                                         value={this.state.name}
                                         valid={errors.name === ''}
@@ -203,7 +203,7 @@ class Stafflist extends Component {
                             <FormGroup row>
                                 <Label htmlFor="doB" md={4}>Ngày sinh</Label>
                                 <Col md={8}>
-                                    <Input type="date" id="doB" name="doB"
+                                    <Input type="date" id="doB" name="doB" 
                                         value={this.state.doB}
                                         valid={errors.doB === ''}
                                         invalid={errors.doB !== ''}
@@ -215,7 +215,7 @@ class Stafflist extends Component {
                             <FormGroup row>
                                 <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
                                 <Col md={8}>
-                                    <Input type="date" id="startDate" name="startDate"
+                                    <Input type="date" id="startDate" name="startDate" 
                                         value={this.state.startDate}
                                         valid={errors.startDate === ''}
                                         invalid={errors.startDate !== ''}
@@ -227,24 +227,24 @@ class Stafflist extends Component {
                             <FormGroup row>
                                 <Label htmlFor="department" md={4}>Phòng ban</Label>
                                 <Col md={8}>
-                                    <Input type="select" id="department" name="department"
+                                    <Input type="select" id="department" name="department" 
                                         value={this.state.department}
                                         valid={errors.department === ''}
                                         invalid={errors.department !== ''}
                                         onBlur={this.handleBlur('department')}
                                         onChange={this.handleNewstaffChange}>
-                                    <option>Sale</option>
-                                    <option>HR</option>
-                                    <option>Marketing</option>
-                                    <option>IT</option>
-                                    <option>Finance</option>
+                                            <option value="Dept01">Sale</option>
+                                            <option value="Dept02">HR</option>
+                                            <option value="Dept03">Marketing</option>
+                                            <option value="Dept04">IT</option>
+                                            <option value="Dept05">Finance</option>
                                         </Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
                                 <Col md={8}>
-                                    <Input type="number" step="0.1" min="1" max="3" id="salaryScale" name="salaryScale"
+                                    <Input type="number" step="0.1" min="1" max="3" id="salaryScale" name="salaryScale" 
                                         value={this.state.salaryScale}
                                         valid={errors.salaryScale === ''}
                                         invalid={errors.salaryScale !== ''}
@@ -256,7 +256,7 @@ class Stafflist extends Component {
                             <FormGroup row>
                                 <Label htmlFor="annualLeave" md={4}>Số ngày nghỉ còn lại</Label>
                                 <Col md={8}>
-                                    <Input type="number" min="0" id="annualLeave" name="annualLeave"
+                                    <Input type="number" min="0" id="annualLeave" name="annualLeave" 
                                         value={this.state.annualLeave}
                                         valid={errors.annualLeave === ''}
                                         invalid={errors.annualLeave !== ''}
@@ -268,7 +268,7 @@ class Stafflist extends Component {
                             <FormGroup row>
                                 <Label htmlFor="overTime" md={4}>Số ngày đã làm thêm</Label>
                                 <Col md={8}>
-                                    <Input type="number" min="0" id="overTime" name="overTime"
+                                    <Input type="number" min="0" id="overTime" name="overTime" 
                                         value={this.state.overTime}
                                         valid={errors.overTime === ''}
                                         invalid={errors.overTime !== ''}
