@@ -21,8 +21,6 @@ class Main extends Component {
 
   addStaff = (staff) => {
     var department = this.state.departments.find((item) => item.id == staff.department);
-    console.log("department", department);
-    console.log("staff", staff);
     const id = Math.floor(Math.random() * 10000 + 1);
     const newStaff = { id, ...staff, department};
     this.setState({
