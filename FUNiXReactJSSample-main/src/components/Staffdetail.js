@@ -4,8 +4,6 @@ import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
 
 function RenderStaffdetail({ staff }) {
-    console.log("staff.department", staff.department)
-    console.log("staff", staff)
         return (
             <div className="col-12 mb-3">
                 <div className="row">

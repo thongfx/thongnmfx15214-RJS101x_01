@@ -69,7 +69,6 @@ class Stafflist extends Component {
 
     handleNewstaff(event) {
         event.preventDefault();
-        alert('Current State is: ' + JSON.stringify(this.state));
         const newStaff = {
             name: this.state.name,
             doB: this.state.doB,
@@ -233,6 +232,7 @@ class Stafflist extends Component {
                                         invalid={errors.department !== ''}
                                         onBlur={this.handleBlur('department')}
                                         onChange={this.handleNewstaffChange}>
+                                            <option value="">---Chọn phòng ban---</option>
                                             <option value="Dept01">Sale</option>
                                             <option value="Dept02">HR</option>
                                             <option value="Dept03">Marketing</option>
