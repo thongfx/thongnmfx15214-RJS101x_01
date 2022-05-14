@@ -39,23 +39,24 @@ class Stafflist extends Component {
 
 
     handleNewstaff(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
-            const newStaff = {
-                    name: values.name,
-                    doB: values.doB,
-                    salaryScale: values.salaryScale,
-                    startDate: values.startDate,
-                    department: values.department,
-                    annualLeave: values.annualLeave,
-                    overTime: values.overTime,
-                    salary: values.salary,
-                    image: '/assets/images/alberto.png',
-                };     
-                this.props.onAdd(newStaff);
+        const newStaff = {
+                name: values.name,
+                doB: values.doB,
+                salaryScale: values.salaryScale,
+                startDate: values.startDate,
+                department: values.department,
+                annualLeave: values.annualLeave,
+                overTime: values.overTime,
+                salary: 3000,
+                image: '/assets/images/alberto.png',
+        };
+        this.props.onAdd(newStaff);
     } 
 
     render() {
+        const required = (val) => val && val.length;
+        const maxLength = (len) => (val) => !(val) || (val.length <= len);
+        const minLength = (len) => (val) => val && (val.length >= len);
         const stafflist = this.props.staffs
             .filter((staff) => {
                 if (this.state.findStaff === "") {
@@ -120,7 +121,21 @@ class Stafflist extends Component {
                                     <Control.text model=".name" id="name" name="name" 
                                         placeholder="Tên Nhân Viên"
                                         className='form-control'
-                                         />
+                                        defaultValue=''
+                                        validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(30)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".name"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập ',
+                                            minLength: 'Yêu cầu nhiều hơn 2 ký tự',
+                                            maxLength: 'Tên nhân viên phải ít hơn 30 ký tự'
+                                        }}
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -128,15 +143,39 @@ class Stafflist extends Component {
                                 <Col md={8}>
                                     <Control type='date' model=".doB" id="doB" name="doB" 
                                         className='form-control'
-                                         />
+                                        defaultValue=''
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".doB"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập ',
+                                        }}
+                                    />   
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
                                 <Col md={8}>
                                     <Control type='date' model=".startDate" id="startDate" name="startDate" 
-                                         className='form-control'
-                                        />
+                                        className='form-control'
+                                        defaultValue=''
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".startDate"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập ',
+                                        }}
+                                    />   
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -157,21 +196,60 @@ class Stafflist extends Component {
                                 <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
                                 <Col md={8}>
                                     <Control type='number' min="1" max="3" step="0.1" model=".salaryScale" id="salaryScale" name="salaryScale" 
-                                        className='form-control'/>
+                                        defaultValue='1'
+                                        className='form-control'
+                                        validators={{
+                                                required
+                                            }}
+                                        />
+                                        <Errors
+                                            className="text-danger"
+                                            model=".salaryScale"
+                                            show="touched"
+                                            messages={{
+                                                required: 'Yêu cầu nhập ',
+                                            }}
+                                        />      
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="annualLeave" md={4}>Số ngày nghỉ còn lại</Label>
                                 <Col md={8}>
-                                    <Control type='number' model=".annualLeave" id="annualLeave" name="annualLeave" 
-                                        className='form-control'/>
+                                    <Control type='number' min="0" model=".annualLeave" id="annualLeave" name="annualLeave" 
+                                        className='form-control'
+                                        defaultValue='0'
+                                        validators={{
+                                                required
+                                            }}
+                                        />
+                                        <Errors
+                                            className="text-danger"
+                                            model=".annualLeave"
+                                            show="touched"
+                                            messages={{
+                                                required: 'Yêu cầu nhập ',
+                                            }}
+                                    /> 
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="overTime" md={4}>Số ngày đã làm thêm</Label>
                                 <Col md={8}>
-                                    <Control type='number' model=".overTime" id="overTime" name="overTime" 
-                                        className='form-control'/>
+                                    <Control type='number' min="0" model=".overTime" id="overTime" name="overTime" 
+                                        className='form-control'
+                                        defaultValue='0'
+                                        validators={{
+                                                    required
+                                                }}
+                                        />
+                                        <Errors
+                                            className="text-danger"
+                                            model=".overTime"
+                                            show="touched"
+                                            messages={{
+                                                required: 'Yêu cầu nhập ',
+                                            }}
+                                        /> 
                                 </Col>
                             </Row>
                             <Row className="form-group">
