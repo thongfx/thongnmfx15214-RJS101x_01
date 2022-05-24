@@ -8,18 +8,24 @@ import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
-
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function RenderDish({dish}) {
     return(
         <div>
-            <Card>
-                <CardImg top src={baseUrl + dish.image} alt={dish.name} />                    
-                <CardBody>
-                    <CardTitle>{dish.name}</CardTitle>
-                    <CardText>{dish.description}</CardText>
-                </CardBody>
-            </Card>
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                <Card>
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />                    
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
         </div>
         );
 
@@ -31,16 +37,20 @@ function RenderComments({comments, postComment, dishId}) {
             <div>
                 <h4>Comments</h4>
                 <ul className="list-unstyled">
-                        {comments.map((comment) => {
-                            return (
-                                <div in key={comment._id}>
-                                   <li>
-                                        <p>{comment.comment}</p>
-                                        <p>-- {comment.author} , {dateFormat(comment.date, "dd/mm/yy")}</p>
-                                    </li>
-                                </div>
-                            );
+                    <Stagger in>
+                    {comments.map((comment) => {
+                    return (
+                        <Fade in>
+                        <div in key={comment._id}>
+                            <li>
+                                <p>{comment.comment}</p>
+                                <p>-- {comment.author} , {dateFormat(comment.date, "dd/mm/yy")}</p>
+                            </li>
+                        </div>
+                        </Fade>
+                        );
                         })}
+                    </Stagger>
                 </ul>
                 <CommentForm dishId={dishId} postComment={postComment} />
             </div>
