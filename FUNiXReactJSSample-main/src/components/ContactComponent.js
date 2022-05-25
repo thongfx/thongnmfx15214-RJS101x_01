@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Row, Button, Label, Col } from 'reactstrap';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
 class Contact extends Component {
-    constructor(props) {
-        super(props);
 
-    };
- 
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
