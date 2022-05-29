@@ -1,13 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
-export const addnewStaff = (staff) => ({
-    type: ActionTypes.ADD_NEWSTAFF,
-    payload: staff
-});
-
 export const postStaff = ( name, doB, salaryScale, startDate, departmentId, annualLeave, overTime ) => (dispatch) => {
-  
   const newStaff = {
             name: name,
             doB: doB,
@@ -41,8 +35,8 @@ export const postStaff = ( name, doB, salaryScale, startDate, departmentId, annu
             throw error;
       })
     .then(response => response.json())
-    .then(response => dispatch(addnewStaff(response)))
-    .catch(error => { console.log('post comments', error.message); alert('Your comment could not be posted\nError: ' + error.message); });
+    .then(response => dispatch(addStaffs(response)))
+    .catch(error => { console.log('post comments', error.message); alert('Your could not posted new staff\nError: ' + error.message); });
 };
 
 export const deleteStaff = (staffid) => () => {
@@ -61,10 +55,10 @@ export const deleteStaff = (staffid) => () => {
       error => {
             throw error;
       })
-    .catch(error => { console.log('post comments', error.message); alert('Your comment could not be posted\nError: ' + error.message); });
+    .catch(error => { console.log('post comments', error.message); alert('You could not delete staff\nError: ' + error.message); });
 };
 
-export const patchStaff = ( staffId, name, doB, salaryScale, startDate, departmentId, annualLeave, overTime ) => () => {
+export const patchStaff = ( staffId, name, doB, salaryScale, startDate, departmentId, annualLeave, overTime ) => (dispatch) => {
   const updateStaff = {
             id: staffId,
             name: name,
@@ -96,8 +90,9 @@ export const patchStaff = ( staffId, name, doB, salaryScale, startDate, departme
       error => {
             throw error;
       })
-    .then(response => response.json())
-    .catch(error => { console.log('post comments', error.message); alert('Your comment could not be posted\nError: ' + error.message); });
+      .then(response => response.json())
+      .then(response => dispatch(addStaffs(response)))
+      .catch(error => { console.log('patch comments', error.message); alert('Your could not patch staff\nError: ' + error.message); });
 };
 
 export const fetchStaffs = () => (dispatch) => {

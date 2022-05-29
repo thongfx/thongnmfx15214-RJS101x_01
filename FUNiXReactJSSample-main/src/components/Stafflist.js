@@ -6,6 +6,7 @@ import {
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 class Stafflist extends Component {
     constructor(props) {
@@ -63,12 +64,18 @@ class Stafflist extends Component {
             .map((staff) => {
             return (
                 <div className="col-6 col-md-4 col-lg-2 mb-3">
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
                     <Link to={`/Nhanvien/${staff.id}`}>
                         <CardImg width="100%" src={staff.image} alt={staff.name} />
                         <Card>
                             <CardTitle className='text-center'>{staff.name}</CardTitle>
                         </Card>
                     </Link>
+            </FadeTransform>
                 </div>
             )
             });
@@ -274,9 +281,13 @@ class Stafflist extends Component {
                         </LocalForm>
                     </ModalBody>
                 </Modal>
-                <div className='row'>
-                    {stafflist}
-                </div>
+                <Stagger in>
+                    <Fade in>
+                        <div className='row'>
+                            {stafflist}
+                        </div>
+                    </Fade>
+                </Stagger>
             </div>
         )
         }

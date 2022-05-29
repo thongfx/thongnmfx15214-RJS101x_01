@@ -2,29 +2,36 @@ import React from 'react';
 import { Card, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Loading } from './LoadingComponent';
 import { Link } from 'react-router-dom';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const grossSalary = 3000000;
 const overTimeSalary= 200000;
 
 function RenderSalary ({staff}) {
-    return (
-      <Card>
-        <CardTitle className="m-2">{staff.name}</CardTitle>
-        <CardBody>
-          <CardText>
-            Mã nhân viên: {staff.id}
-          </CardText>
-          <CardText>
-            Hệ số lương: {staff.salaryScale}
-          </CardText><CardText>
-            Số ngày làm thêm: {staff.overTime}
-          </CardText>
-           <CardText className="bg-light p-2 shadow">
-          Lương:{" "}
-          {(staff.salaryScale * grossSalary  + staff.overTime * overTimeSalary).toFixed(0)}
-        </CardText>
-        </CardBody>
-      </Card>
+  return (
+      <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+          <Card>
+            <CardTitle className="m-2">{staff.name}</CardTitle>
+            <CardBody>
+              <CardText>
+                Mã nhân viên: {staff.id}
+              </CardText>
+              <CardText>
+                Hệ số lương: {staff.salaryScale}
+              </CardText><CardText>
+                Số ngày làm thêm: {staff.overTime}
+              </CardText>
+              <CardText className="bg-light p-2 shadow">
+              Lương:{" "}
+              {(staff.salaryScale * grossSalary  + staff.overTime * overTimeSalary).toFixed(0)}
+            </CardText>
+            </CardBody>
+        </Card>
+      </FadeTransform>
     );
 }
 
@@ -65,9 +72,13 @@ const Salary = (props) => {
             <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
           </Breadcrumb>
         </div>
-        <div className="row">
-          {Totalsalary}
-        </div>
+        <Stagger in>
+          <Fade in>
+            <div className="row">
+              {Totalsalary}
+            </div>
+          </Fade>
+        </Stagger>
       </div>
     );
   }

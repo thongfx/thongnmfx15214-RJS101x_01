@@ -9,6 +9,7 @@ import Salary from './Salary';
 import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postStaff, patchStaff, deleteStaff, fetchStaffs, fetchDepartment } from '../redux/ActionCreators';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
   return {
@@ -52,28 +53,32 @@ class Main extends Component {
     return (
       <div>
         <Header />
-        <Switch>
-          <Route exact path="/Nhanvien" component={() =>
-            <Stafflist
-              staffs={this.props.staffs} 
-              isLoading={this.props.staffs.isLoading}
-              errMess={this.props.staffs.errMess}
-              postStaff={this.props.postStaff}
-          />} />
-          <Route path="/Nhanvien/:staffId" component={StaffWithId} />
-          <Route exact path="/Phongban" component={() =>
-            <Department
-              department={this.props.department}
-              isLoading={this.props.department.isLoading}
-              errMess={this.props.department.errMess}
-          />} />
-          <Route path="/Phongban/:departmentId" component={DepartmentWithId} />
-          <Route path="/Bangluong" component={() => <Salary
-            staffs={this.props.staffs}
-            isLoading={this.props.staffs.isLoading}
-            errMess={this.props.staffs.errMess}/>} />
-          <Redirect to="/Nhanvien"/>
-        </Switch>
+        <TransitionGroup>
+          <CSSTransition  key={this.props.location.key} classNames="page" timeout={300}>
+            <Switch>
+              <Route exact path="/Nhanvien" component={() =>
+                <Stafflist
+                  staffs={this.props.staffs} 
+                  isLoading={this.props.staffs.isLoading}
+                  errMess={this.props.staffs.errMess}
+                  postStaff={this.props.postStaff}
+              />} />
+              <Route path="/Nhanvien/:staffId" component={StaffWithId} />
+              <Route exact path="/Phongban" component={() =>
+                <Department
+                  department={this.props.department}
+                  isLoading={this.props.department.isLoading}
+                  errMess={this.props.department.errMess}
+              />} />
+              <Route path="/Phongban/:departmentId" component={DepartmentWithId} />
+              <Route path="/Bangluong" component={() => <Salary
+                staffs={this.props.staffs}
+                isLoading={this.props.staffs.isLoading}
+                errMess={this.props.staffs.errMess}/>} />
+              <Redirect to="/Nhanvien"/>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
         <Footer />
       </div>
     );
