@@ -5,11 +5,13 @@ import {
 } from "reactstrap";
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
 
 class Stafflist extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            staffs: this.props.staffs.staffs,
             findStaff: "",
             isModalOpen: false,
         }
@@ -20,13 +22,8 @@ class Stafflist extends Component {
         this.handleNewstaff = this.handleNewstaff.bind(this);
     }
     
-    toggleModal() {
-    this.setState({
-      isModalOpen: !this.state.isModalOpen
-    });
-    }
-    
     filterStaff() {
+        console.log('finstaff', this.findStaff.value)
         this.setState({
             findStaff: this.findStaff.value
         });
@@ -37,27 +34,22 @@ class Stafflist extends Component {
         event.preventDefault();
     }
 
+    toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen
+    });
+    }
 
     handleNewstaff(values) {
-        const newStaff = {
-                name: values.name,
-                doB: values.doB,
-                salaryScale: values.salaryScale,
-                startDate: values.startDate,
-                department: values.department,
-                annualLeave: values.annualLeave,
-                overTime: values.overTime,
-                salary: 3000,
-                image: '/assets/images/alberto.png',
-        };
-        this.props.onAdd(newStaff);
-    } 
+        this.toggleModal();
+        this.props.postStaff(values.name, values.doB, values.salaryScale, values.startDate, values.departmentId, values.annualLeave, values.overTime);
+    }
 
     render() {
         const required = (val) => val && val.length;
         const maxLength = (len) => (val) => !(val) || (val.length <= len);
         const minLength = (len) => (val) => val && (val.length >= len);
-        const stafflist = this.props.staffs
+        const stafflist = this.state.staffs
             .filter((staff) => {
                 if (this.state.findStaff === "") {
                     return staff;
@@ -79,9 +71,28 @@ class Stafflist extends Component {
                     </Link>
                 </div>
             )
-        });
-
-        return (
+            });
+        
+        if (this.props.staffs.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (this.props.staffs.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else {
+            return (
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-6 mt-3">
@@ -91,7 +102,8 @@ class Stafflist extends Component {
                             </div>
                             <div className='col-2 col-md-4'>
                                 <Button onClick={this.toggleModal}>
-                                    <span className='fa fa-plus fa-lg'></span>
+                                    <span className='fa fa-plus fa-lg'>
+                                    </span>
                                 </Button>
                             </div>
                         </div>
@@ -111,7 +123,7 @@ class Stafflist extends Component {
                     </div>
                 </div>
                 <hr />
-                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Thêm Nhân Viên</ModalHeader>
                     <ModalBody>
                         <LocalForm onSubmit={(values) => this.handleNewstaff(values)}>
@@ -179,9 +191,9 @@ class Stafflist extends Component {
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Label htmlFor="department" md={4}>Phòng ban</Label>
+                                <Label htmlFor="departmentId" md={4}>Phòng ban</Label>
                                 <Col md={8}>
-                                    <Control.select model=".department" id="department" name="department" 
+                                    <Control.select model=".departmentId" id="departmentId" name="departmentId" 
                                         className='form-control'>
                                             <option value="">---Chọn phòng ban---</option>
                                             <option value="Dept01">Sale</option>
@@ -267,6 +279,7 @@ class Stafflist extends Component {
                 </div>
             </div>
         )
+        }
     }
 }
 

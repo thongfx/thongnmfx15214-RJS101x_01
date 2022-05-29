@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Loading } from './LoadingComponent';
 import { Link } from 'react-router-dom';
 
 const grossSalary = 3000000;
@@ -29,27 +30,47 @@ function RenderSalary ({staff}) {
 
 
 const Salary = (props) => {
-  const Totalsalary = props.staffs.map((staff) => {
+  const Totalsalary = props.staffs.staffs.map((staff) => {
         return (
         <div className="col-12 col-md-6 col-lg-4 mt-2 mb-2" key={staff.id}>
             <RenderSalary staff={staff}/>
         </div>
         );
-    });
-
+  });
+  
+  if (props.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    );
+  }
+  else if (props.errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>{this.props.errMess}</h4>
+        </div>
+      </div>
+    );
+  }
+  else if (props.staffs != null) {
     return (
       <div className="container">
         <div className="row">
           <Breadcrumb>
-              <BreadcrumbItem><Link to="/Nhanvien">Nhân Viên</Link></BreadcrumbItem>
-              <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
-          </Breadcrumb> 
+            <BreadcrumbItem><Link to="/Nhanvien">Nhân Viên</Link></BreadcrumbItem>
+            <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
+          </Breadcrumb>
         </div>
         <div className="row">
-            {Totalsalary}
+          {Totalsalary}
         </div>
       </div>
     );
+  }
 }
 
 export default Salary;
